@@ -73,26 +73,70 @@ diff_less_than_zero = [history['diff']<0]
 print(diff_more_than_zero)
 print(diff_less_than_zero)
 
-#if just_diff >= 0:
+# if just_diff >= 0:
 #    print('Greater than 0')
 
-#if x >= y:
+# if x >= y:
 #    print('greater than')
-#elif x <= y:
+# elif x <= y:
 #    print('less than')
 
 # print(history.loc[history['diff']])
 # if history.loc[history['color'] == 'red']:
-    # print('red')
+#     print('red')
 
-# #Scale volume so it's not blocking price
-# fig3.update_yaxes(range=[0,7000000000],secondary_y=True)
-# fig3.update_yaxes(visible=False, secondary_y=True)
 
-# fig3.update_xaxes(rangebreaks = [
-#                        dict(bounds=['sat','mon']), # hide weekends
-#                        #dict(bounds=[16, 9.5], pattern='hour'), # for hourly chart, hide non-trading hours (24hr format)
-#                        dict(values=["2021-12-25","2022-01-01"]) #hide Xmas and New Year
-#                                 ])
+# fig3.update_layout(
+#     updatemenus=[
+#         dict(
+#             type = "buttons",
+#             direction = "left",
+#             buttons=list([
+#                 dict(
+#                     args=["type", "surface"],
+#                     label="Button 1",
+#                     method="restyle"
+#                 ),
+#                 dict(
+#                     args=["type", "heatmap"],
+#                     label="Button 2",
+#                     method="restyle"
+#                 )
+#             ]),
+#             pad={"r": 10, "t": 10},
+#             showactive=True,
+#             x=0.11,
+#             xanchor="left",
+#             y=1.1,
+#             yanchor="top"
+#         ),
+#     ]
+# )
 
-# fig3.show()
+
+my_button=list(
+    [
+        
+        dict(args=['type', 'line'], label = 'Line', method = 'restyle'),
+        dict(args=['type', 'candlestick'], label = 'Candlestick', method = 'restyle')
+        #dict[args=['type', 'line'],label='LinePlot', method='restyle'],
+        #dict[args=['type', 'Candlestick'],label='CandleStickPlot', method='restyle']
+    ]
+    )
+
+fig3.update_layout(
+    updatemenus=[dict(type='buttons', buttons = my_button,direction='left')]
+    )
+
+
+#Scale volume so it's not blocking price
+fig3.update_yaxes(range=[0,7000000000],secondary_y=True)
+fig3.update_yaxes(visible=False, secondary_y=True)
+
+fig3.update_xaxes(rangebreaks = [
+                       dict(bounds=['sat','mon']), # hide weekends
+                       #dict(bounds=[16, 9.5], pattern='hour'), # for hourly chart, hide non-trading hours (24hr format)
+                       dict(values=["2021-12-25","2022-01-01"]) #hide Xmas and New Year
+                                ])
+
+fig3.show()
